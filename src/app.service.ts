@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import {ClientProxy,ClientProxyFactory,Transport } from '@nestjs/microservices'
+import {MessageDto } from './message.dto';
 
 @Injectable()
 export class AppService {
@@ -15,9 +16,9 @@ export class AppService {
       }
     })
   }
-   getHello(msg:string): any {
+   getHello(msg:MessageDto): any {
      this.logger.log('Client send to microservice')
 
-    return  this.client.send<string,string>('hello',msg);
+    return  this.client.send<string,MessageDto>('hello',msg);
   }
 }
